@@ -28,3 +28,22 @@ try {
     handleError(error)
 }
 }
+
+function displayProducts(products){
+    const container = document.getElementById("product-container");
+    container.innerHTML = "";
+    products.slice(0,5).forEach(product => {
+        const { name, price, image} = product.fields;
+        const imgURL = image[0].url;
+        const formattedPrice = (price/100).toFixed(2);
+        const card = document.createElement("div");
+        card.classList.add("product-card");
+        card.innerHTML= `
+        <img src="${imgURL}" alt="${name}">
+        <h2>${name}</h2>
+        <p>$${formattedPrice}</p>
+        `;
+        container.appendChild(card);
+        
+    });
+}
